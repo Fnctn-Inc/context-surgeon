@@ -3002,7 +3002,7 @@ function ArchitectureSection() {
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">
               Sponsor-native architecture
             </p>
-            <h2 className="mt-3 text-3xl font-semibold">Built around partner tech jobs, not logo stacking.</h2>
+            <h2 className="mt-3 text-3xl font-semibold">Each partner powers a real step in the context pipeline.</h2>
             <p className="mt-4 leading-7 text-muted">
               Gemini handles structured reasoning, Tavily enriches and verifies external evidence,
               Pioneer/Fastino supplies schema-first extraction hints, and the Qontext export makes
