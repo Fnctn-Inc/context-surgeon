@@ -5,7 +5,7 @@
 Agents should not act on stale, contradictory, or unverifiable context. Context Surgeon compiles messy source material into facts, conflicts, Markdown/VFS files, provenance, and surgical **Fact Patch** updates that preserve human edits.
 
 - Live product: [contextsurgeon.fnctn.io](https://contextsurgeon.fnctn.io/)
-- Public repository: [github.com/fnctn/context-surgeon](https://github.com/fnctn/context-surgeon)
+- Public repository: [github.com/Fnctn-Inc/context-surgeon](https://github.com/Fnctn-Inc/context-surgeon)
 - Demo route: [contextsurgeon.fnctn.io/demo](https://contextsurgeon.fnctn.io/demo)
 
 ## Hackathon Fit
