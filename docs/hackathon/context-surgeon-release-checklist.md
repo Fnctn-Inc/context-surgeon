@@ -115,43 +115,30 @@ Each unauthenticated protected endpoint command should print `401`.
 Protected endpoint checks with Firebase auth:
 
 ```bash
-export BASE_URL="https://contextsurgeon.fnctn.io"
-export FIREBASE_API_KEY="replace-with-web-api-key"
-export FIREBASE_EMAIL="replace-with-demo-user-email"
-export FIREBASE_PASSWORD="replace-with-demo-user-password"
-
-export ID_TOKEN="$(
-  curl -fsS \
-    "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=$FIREBASE_API_KEY" \
-    -H 'content-type: application/json' \
-    -d "{\"email\":\"$FIREBASE_EMAIL\",\"password\":\"$FIREBASE_PASSWORD\",\"returnSecureToken\":true}" \
-    | jq -r '.idToken'
-)"
-
-curl -fsS -X POST "$BASE_URL/api/workspace/reset" \
-  -H "authorization: Bearer $ID_TOKEN" \
+curl -fsS -X POST "https://contextsurgeon.fnctn.io/api/workspace/reset" \
+  -H "authorization: Bearer <FIREBASE_ID_TOKEN>" \
   | jq '{phase, auditEvents: .auditEvents|length}'
 
-curl -fsS -X POST "$BASE_URL/api/workspace/action" \
-  -H "authorization: Bearer $ID_TOKEN" \
+curl -fsS -X POST "https://contextsurgeon.fnctn.io/api/workspace/action" \
+  -H "authorization: Bearer <FIREBASE_ID_TOKEN>" \
   -H 'content-type: application/json' \
   -d '{"action":"compile"}' \
   | jq '{phase, facts: .current.facts|length, conflicts: .current.conflicts|length}'
 
-curl -fsS -X POST "$BASE_URL/api/workspace/action" \
-  -H "authorization: Bearer $ID_TOKEN" \
+curl -fsS -X POST "https://contextsurgeon.fnctn.io/api/workspace/action" \
+  -H "authorization: Bearer <FIREBASE_ID_TOKEN>" \
   -H 'content-type: application/json' \
   -d '{"action":"human-note"}' \
   | jq -e '.phase == "human_edited" and (.current.files[] | select(.path|endswith("/context.md")) | .content | contains("Manual note:"))'
 
-curl -fsS -X POST "$BASE_URL/api/workspace/action" \
-  -H "authorization: Bearer $ID_TOKEN" \
+curl -fsS -X POST "https://contextsurgeon.fnctn.io/api/workspace/action" \
+  -H "authorization: Bearer <FIREBASE_ID_TOKEN>" \
   -H 'content-type: application/json' \
   -d '{"action":"ingest-email"}' \
   | jq '{phase, patchStatus: .patch.patchStatus, preservesHumanEdits: .patch.preservesHumanEdits, changedFactIds: .patch.changedFactIds}'
 
-curl -fsS -X POST "$BASE_URL/api/workspace/action" \
-  -H "authorization: Bearer $ID_TOKEN" \
+curl -fsS -X POST "https://contextsurgeon.fnctn.io/api/workspace/action" \
+  -H "authorization: Bearer <FIREBASE_ID_TOKEN>" \
   -H 'content-type: application/json' \
   -d '{"action":"apply-patch"}' \
   | jq '{phase, patchStatus: .patch.patchStatus, before: .beforeCheck.score, after: .afterCheck.score}'
@@ -160,6 +147,8 @@ curl -fsS "$BASE_URL/api/workspace/export" \
   -H "authorization: Bearer $ID_TOKEN" \
   | jq -e '.virtualFileSystem|length > 0 and .graph.facts|length > 0 and .sourceRelevance|length > 0 and .partnerTechnologyProof.gemini'
 ```
+
+Set the Firebase auth values in your local shell before running the snippet. The only committed environment example lives in the root README.
 
 ## Cloudflare Readiness
 
@@ -184,10 +173,7 @@ curl -fsS "$BASE_URL/api/workspace/export" \
 - [ ] User has explicitly approved deploying Firebase production secrets.
 - [ ] Firebase project selected.
 - [ ] Email/password sign-in enabled in Firebase Auth.
-- [ ] `FIREBASE_API_KEY` deployed to Cloudflare.
-- [ ] `FIREBASE_AUTH_DOMAIN` deployed to Cloudflare.
-- [ ] `FIREBASE_PROJECT_ID` deployed to Cloudflare.
-- [ ] `FIREBASE_APP_ID` deployed to Cloudflare.
+- [ ] Firebase web auth configuration deployed to Cloudflare.
 - [ ] Demo account exists.
 - [ ] Password reset works or is hidden from demo path.
 - [ ] Signed-in browser session persists across refresh.

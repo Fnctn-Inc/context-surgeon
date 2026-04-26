@@ -10,7 +10,7 @@ Current production URL:
 
 Public repository:
 
-`https://github.com/blah-mad/context-surgeon`
+`https://github.com/fnctn/context-surgeon`
 
 Current deployed Worker version:
 
@@ -44,7 +44,7 @@ Current implementation includes:
 
 Submission assets:
 
-- Public repository is live: `https://github.com/blah-mad/context-surgeon`.
+- Public repository is live: `https://github.com/fnctn/context-surgeon`.
 - A 60-second local walkthrough video was generated at `/Users/blah_mad/Desktop/context-surgeon-demo.mp4`. It still needs to be uploaded to Loom or another shareable host before final submission.
 
 Still not fully finished:
