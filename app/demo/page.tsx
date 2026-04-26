@@ -3675,7 +3675,7 @@ export default function Home() {
           </div>
           </div>
           <p className="mt-12 max-w-4xl text-5xl font-semibold leading-none tracking-normal max-md:text-3xl">
-            Built by the Context Surgeon team for Big Hack Berlin.
+            Built with love by humans and agents at FNCTN.io
           </p>
           <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-cream/45">
             live build 2026-04-25.5

@@ -965,7 +965,7 @@ function SiteFooter() {
         </div>
         <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 md:flex-row md:items-end md:justify-between">
           <p className="max-w-3xl text-3xl font-semibold leading-tight text-cream sm:text-5xl">
-            Made with love by humans on planet earth.
+            Built with love by humans and agents at FNCTN.io
           </p>
           <p className="text-lg font-semibold text-primary">Big. Hack. Berlin!</p>
         </div>
